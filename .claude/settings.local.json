@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python:*)",
+      "Bash(py --version)",
+      "Bash(pyenv versions:*)",
+      "Bash(pyenv local:*)",
+      "Bash(pip show:*)",
+      "Bash(pip install:*)",
+      "Bash(python -c \":*)",
+      "Bash(del:*)"
+    ]
+  }
+}
