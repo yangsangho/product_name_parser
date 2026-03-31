@@ -121,11 +121,25 @@ with tab_brand:
     st.divider()
 
     # ── Brand list ────────────────────────────────────────────────────────
+    st.caption("위에 있을수록 우선순위가 높습니다. 여러 브랜드가 동시에 매칭될 때 위쪽 브랜드가 선택됩니다.")
     if not brands:
         st.info("등록된 브랜드가 없습니다.")
     else:
         for b_idx, brand in enumerate(brands):
-            with st.expander(
+            b_row = st.columns([0.35, 0.35, 10])
+            if b_row[0].button("▲", key=f'bup_{b_idx}',
+                               disabled=(b_idx == 0), use_container_width=True):
+                brands[b_idx], brands[b_idx - 1] = brands[b_idx - 1], brands[b_idx]
+                dictionary['brands'] = brands
+                save_dict(dictionary)
+                st.rerun()
+            if b_row[1].button("▼", key=f'bdn_{b_idx}',
+                               disabled=(b_idx == len(brands) - 1), use_container_width=True):
+                brands[b_idx], brands[b_idx + 1] = brands[b_idx + 1], brands[b_idx]
+                dictionary['brands'] = brands
+                save_dict(dictionary)
+                st.rerun()
+            with b_row[2].expander(
                 f"**{brand['name']}** — 별칭: {aliases_to_str(brand.get('aliases', []))}",
                 expanded=False
             ):
@@ -188,8 +202,23 @@ with tab_brand:
                             st.warning("모델명을 입력하세요.")
 
                 for m_idx, model in enumerate(models):
-                    with st.expander(
-                        f"└ **{model['name']}** — {aliases_to_str(model.get('aliases', []))}",
+                    m_row = st.columns([0.35, 0.35, 5])
+                    if m_row[0].button("▲", key=f'mup_{b_idx}_{m_idx}',
+                                       disabled=(m_idx == 0), use_container_width=True):
+                        brands[b_idx]['models'][m_idx], brands[b_idx]['models'][m_idx - 1] = \
+                            brands[b_idx]['models'][m_idx - 1], brands[b_idx]['models'][m_idx]
+                        dictionary['brands'] = brands
+                        save_dict(dictionary)
+                        st.rerun()
+                    if m_row[1].button("▼", key=f'mdn_{b_idx}_{m_idx}',
+                                       disabled=(m_idx == len(models) - 1), use_container_width=True):
+                        brands[b_idx]['models'][m_idx], brands[b_idx]['models'][m_idx + 1] = \
+                            brands[b_idx]['models'][m_idx + 1], brands[b_idx]['models'][m_idx]
+                        dictionary['brands'] = brands
+                        save_dict(dictionary)
+                        st.rerun()
+                    with m_row[2].expander(
+                        f"**{model['name']}** — {aliases_to_str(model.get('aliases', []))}",
                         expanded=False
                     ):
                         # Edit model
@@ -244,7 +273,7 @@ with tab_brand:
                                 st.rerun()
 
                         for s_idx, sub in enumerate(sub_models):
-                            sc1, sc2, sc3, sc4 = st.columns([2, 3, 1, 1])
+                            sc1, sc2, sc3, sc4, sc5, sc6 = st.columns([2, 3, 0.4, 0.4, 0.7, 0.7])
                             se_name = sc1.text_input(
                                 "서브모델명", value=sub['name'],
                                 key=f'sub_name_{b_idx}_{m_idx}_{s_idx}'
@@ -256,13 +285,29 @@ with tab_brand:
                             )
                             sc3.markdown("<br>", unsafe_allow_html=True)
                             sc4.markdown("<br>", unsafe_allow_html=True)
-                            if sc3.button("저장", key=f'save_sub_{b_idx}_{m_idx}_{s_idx}'):
+                            sc5.markdown("<br>", unsafe_allow_html=True)
+                            sc6.markdown("<br>", unsafe_allow_html=True)
+                            if sc3.button("▲", key=f'sup_{b_idx}_{m_idx}_{s_idx}',
+                                          disabled=(s_idx == 0), use_container_width=True):
+                                subs = brands[b_idx]['models'][m_idx]['sub_models']
+                                subs[s_idx], subs[s_idx - 1] = subs[s_idx - 1], subs[s_idx]
+                                dictionary['brands'] = brands
+                                save_dict(dictionary)
+                                st.rerun()
+                            if sc4.button("▼", key=f'sdn_{b_idx}_{m_idx}_{s_idx}',
+                                          disabled=(s_idx == len(sub_models) - 1), use_container_width=True):
+                                subs = brands[b_idx]['models'][m_idx]['sub_models']
+                                subs[s_idx], subs[s_idx + 1] = subs[s_idx + 1], subs[s_idx]
+                                dictionary['brands'] = brands
+                                save_dict(dictionary)
+                                st.rerun()
+                            if sc5.button("저장", key=f'save_sub_{b_idx}_{m_idx}_{s_idx}'):
                                 brands[b_idx]['models'][m_idx]['sub_models'][s_idx]['name'] = se_name.strip()
                                 brands[b_idx]['models'][m_idx]['sub_models'][s_idx]['aliases'] = str_to_aliases(se_aliases)
                                 dictionary['brands'] = brands
                                 save_dict(dictionary)
                                 st.rerun()
-                            if sc4.button("삭제", key=f'del_sub_{b_idx}_{m_idx}_{s_idx}'):
+                            if sc6.button("삭제", key=f'del_sub_{b_idx}_{m_idx}_{s_idx}'):
                                 brands[b_idx]['models'][m_idx]['sub_models'].pop(s_idx)
                                 dictionary['brands'] = brands
                                 save_dict(dictionary)
@@ -274,15 +319,15 @@ with tab_brand:
 # ════════════════════════════════════════════════════════════════════════════
 with tab_cat:
     st.markdown("### 카테고리 목록")
+    st.caption("위에 있을수록 우선순위가 높습니다. ▲▼ 버튼으로 순서를 변경하세요.")
     categories = dictionary.get('categories', [])
+    n_cats = len(categories)
 
-    # Add new category
+    # Add new category — appended at the END (lowest priority); reorder with ▲▼
     with st.expander("➕ 새 카테고리 추가", expanded=False):
-        ncat_c1, ncat_c2 = st.columns(2)
-        new_cat_name = ncat_c1.text_input("카테고리명", key='new_cat_name', placeholder="예: 드라이버")
-        new_cat_aliases = ncat_c2.text_input(
-            "별칭 (쉼표 구분)", key='new_cat_aliases', placeholder="예: driver, 드라이버"
-        )
+        ncat_c1, ncat_c2 = st.columns([2, 4])
+        new_cat_name    = ncat_c1.text_input("카테고리명", key='new_cat_name', placeholder="예: 드라이버")
+        new_cat_aliases = ncat_c2.text_input("별칭 (쉼표 구분)", key='new_cat_aliases', placeholder="예: driver, 드라이버")
         if st.button("카테고리 추가", key='add_cat_btn', type='primary'):
             if new_cat_name.strip():
                 existing = [c['name'] for c in categories]
@@ -291,11 +336,11 @@ with tab_cat:
                 else:
                     categories.append({
                         'name': new_cat_name.strip(),
-                        'aliases': str_to_aliases(new_cat_aliases)
+                        'aliases': str_to_aliases(new_cat_aliases),
                     })
                     dictionary['categories'] = categories
                     save_dict(dictionary)
-                    st.success("추가 완료!")
+                    st.success("추가 완료! (목록 맨 아래 추가됨 — ▲로 순서 조정 가능)")
                     st.rerun()
             else:
                 st.warning("카테고리명을 입력하세요.")
@@ -305,27 +350,46 @@ with tab_cat:
     if not categories:
         st.info("등록된 카테고리가 없습니다.")
     else:
-        for c_idx, cat in enumerate(categories):
-            cc1, cc2, cc3, cc4 = st.columns([2, 4, 1, 1])
-            edit_cat_name = cc1.text_input(
-                "카테고리명", value=cat['name'], key=f'cat_name_{c_idx}', label_visibility='collapsed'
-            )
-            edit_cat_aliases = cc2.text_input(
-                "별칭",
-                value=aliases_to_str(cat.get('aliases', [])),
-                key=f'cat_aliases_{c_idx}',
-                label_visibility='collapsed'
-            )
-            if cc3.button("저장", key=f'save_cat_{c_idx}'):
-                categories[c_idx]['name'] = edit_cat_name.strip()
-                categories[c_idx]['aliases'] = str_to_aliases(edit_cat_aliases)
+        # Header row
+        h = st.columns([2, 4, 0.4, 0.4, 0.7, 0.7])
+        for col, label in zip(h, ["카테고리명", "별칭", "", "", "", ""]):
+            col.markdown(f"<small style='color:#888'>{label}</small>", unsafe_allow_html=True)
+        st.divider()
+
+        for idx, cat in enumerate(categories):
+            cc = st.columns([2, 4, 0.4, 0.4, 0.7, 0.7])
+
+            safe_key = f"{idx}_{cat['name']}"
+            edit_name    = cc[0].text_input("", value=cat['name'],
+                                             key=f'cname_{safe_key}', label_visibility='collapsed')
+            edit_aliases = cc[1].text_input("", value=aliases_to_str(cat.get('aliases', [])),
+                                             key=f'cal_{safe_key}', label_visibility='collapsed')
+
+            # ▲ 올리기 — swap list positions directly
+            if cc[2].button("▲", key=f'cup_{safe_key}',
+                            disabled=(idx == 0), use_container_width=True):
+                categories[idx], categories[idx - 1] = categories[idx - 1], categories[idx]
                 dictionary['categories'] = categories
+                save_dict(dictionary)
+                st.rerun()
+
+            # ▼ 내리기 — swap list positions directly
+            if cc[3].button("▼", key=f'cdn_{safe_key}',
+                            disabled=(idx == n_cats - 1), use_container_width=True):
+                categories[idx], categories[idx + 1] = categories[idx + 1], categories[idx]
+                dictionary['categories'] = categories
+                save_dict(dictionary)
+                st.rerun()
+
+            if cc[4].button("저장", key=f'csav_{safe_key}', use_container_width=True):
+                cat['name']    = edit_name.strip()
+                cat['aliases'] = str_to_aliases(edit_aliases)
                 save_dict(dictionary)
                 st.success("저장 완료!")
                 st.rerun()
-            if cc4.button("삭제", key=f'del_cat_{c_idx}'):
-                categories.pop(c_idx)
-                dictionary['categories'] = categories
+
+            if cc[5].button("삭제", key=f'cdel_{safe_key}', use_container_width=True):
+                dictionary['categories'] = [c for c in categories if c is not cat]
                 save_dict(dictionary)
                 st.rerun()
 

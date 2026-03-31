@@ -102,6 +102,17 @@ def remove_leading_noise(text: str) -> str:
     return text.strip()
 
 
+def strip_inline_jungpum(text: str) -> str:
+    """
+    Convert inline 'BrandName정품' → 'BrandName' (without brackets).
+    e.g., '테일러메이드정품' → '테일러메이드', '필레오정품' → '필레오'
+    Bracket patterns like [xxx정품] are handled separately by remove_brackets_noise.
+    """
+    if not text:
+        return text
+    return re.sub(r'([가-힣a-zA-Z]+)정품', r'\1', text)
+
+
 def full_normalize_pipeline(text: str) -> str:
     """
     Apply all noise removal steps in order.

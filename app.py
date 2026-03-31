@@ -102,22 +102,26 @@ def show_results(result_df: pd.DataFrame, key_suffix: str = ''):
     # ── Summary metrics ──────────────────────────────────────────────────
     total = len(result_df)
     done_col = '분류상태'
-    cnt_done = (result_df[done_col] == '완료').sum() if done_col in result_df.columns else 0
-    cnt_partial = (result_df[done_col] == '부분').sum() if done_col in result_df.columns else 0
-    cnt_undone = (result_df[done_col] == '미분류').sum() if done_col in result_df.columns else 0
+    cnt_done    = (result_df[done_col] == '완료').sum()          if done_col in result_df.columns else 0
+    cnt_sub     = (result_df[done_col] == '서브모델미분류').sum() if done_col in result_df.columns else 0
+    cnt_partial = (result_df[done_col] == '부분').sum()          if done_col in result_df.columns else 0
+    cnt_undone  = (result_df[done_col] == '미분류').sum()        if done_col in result_df.columns else 0
 
-    m1, m2, m3, m4 = st.columns(4)
+    m1, m2, m3, m4, m5 = st.columns(5)
     m1.metric("전체", total)
     m2.metric("완료", int(cnt_done),
               delta=f"{cnt_done/total*100:.1f}%" if total else None)
-    m3.metric("부분", int(cnt_partial))
-    m4.metric("미분류", int(cnt_undone),
+    m3.metric("서브모델미분류", int(cnt_sub))
+    m4.metric("부분", int(cnt_partial))
+    m5.metric("미분류", int(cnt_undone),
               delta=f"-{cnt_undone/total*100:.1f}%" if total and cnt_undone else None,
               delta_color="inverse")
 
-    if cnt_undone > 0:
+    need_review = int(cnt_sub) + int(cnt_undone)
+    if need_review > 0:
         st.warning(
-            f"미분류 상품이 {int(cnt_undone)}개 있습니다. "
+            f"검토 필요 상품이 {need_review}개 있습니다 "
+            f"(서브모델미분류 {int(cnt_sub)}개 / 미분류 {int(cnt_undone)}개). "
             "사이드바의 **미분류검토** 페이지에서 확인하세요."
         )
 
@@ -127,7 +131,7 @@ def show_results(result_df: pd.DataFrame, key_suffix: str = ''):
 
         brand_opts = ['전체'] + sorted([b for b in result_df['브랜드'].dropna().unique() if b])
         cat_opts = ['전체'] + sorted([c for c in result_df['카테고리'].dropna().unique() if c])
-        status_opts = ['전체', '완료', '부분', '미분류']
+        status_opts = ['전체', '완료', '서브모델미분류', '부분', '미분류']
 
         sel_brand = fc1.selectbox("브랜드", brand_opts, key=f'f_brand{key_suffix}')
         sel_cat = fc2.selectbox("카테고리", cat_opts, key=f'f_cat{key_suffix}')
@@ -149,7 +153,12 @@ def show_results(result_df: pd.DataFrame, key_suffix: str = ''):
 
     # ── Dataframe display ─────────────────────────────────────────────────
     def highlight_status(val):
-        colors = {'완료': 'color: #1a7a3a', '부분': 'color: #b87a00', '미분류': 'color: #c0392b'}
+        colors = {
+            '완료': 'color: #1a7a3a',
+            '서브모델미분류': 'color: #7b5ea7',
+            '부분': 'color: #b87a00',
+            '미분류': 'color: #c0392b',
+        }
         return colors.get(val, '')
 
     styled = filtered.style.map(highlight_status, subset=['분류상태'])

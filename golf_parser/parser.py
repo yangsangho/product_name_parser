@@ -14,14 +14,17 @@ from golf_parser.normalizer import (
     remove_brackets_noise,
     clean_parenthetical_duplicates,
     full_normalize_pipeline,
+    strip_inline_jungpum,
 )
 from golf_parser.matcher import (
     build_lookup_table,
     find_longest_match,
     find_all_matches,
     find_tag_matches,
+    find_brand_by_priority,
     find_best_match_by_priority,
     remove_span_from_text,
+    _boundary_pattern,
 )
 
 
@@ -82,6 +85,8 @@ class ProductNameParser:
         # Also remove leftover [] and () wrappers (non-정품 ones that held brand names)
         working = re.sub(r'\[[^\]]+\]', ' ', working)
         working = re.sub(r'\([^)]+\)', ' ', working)
+        # Strip inline 'BrandName정품' → 'BrandName' (e.g., 테일러메이드정품 → 테일러메이드)
+        working = strip_inline_jungpum(working)
         working = re.sub(r'\s+', ' ', working).strip()
 
         # --- Step 4: Brand extraction ---
@@ -131,7 +136,7 @@ class ProductNameParser:
         working = re.sub(r'\s+', ' ', working).strip()
 
         # --- Step 9: Compute confidence / status ---
-        confidence, status = self._compute_status(brand, main_model, category)
+        confidence, status = self._compute_status(brand, main_model, category, sub_model, working)
 
         return {
             'brand': brand,
@@ -187,18 +192,18 @@ class ProductNameParser:
 
     def _extract_brand(self, text_lower: str, brand_hint: Optional[str]):
         """
-        Extract brand from text. Body text takes priority over bracket hint.
-        If a brand is found directly in the body, use that.
-        Only fall back to bracket hint when no brand is found in the body.
+        Extract brand from text using list-order priority.
+        Earlier brands in the dictionary list have higher priority.
+        Korean aliases use permissive (substring) matching.
+        Body text takes priority over bracket hint.
         Returns (brand_name, start, end).
         """
-        # Always try body text first
-        _, body_brand_val, body_start, body_end = find_longest_match(
-            text_lower, self.tables['brands']
+        # Try body text with list-order priority
+        _, body_brand_val, body_start, body_end = find_brand_by_priority(
+            text_lower, self.tables['brands_priority']
         )
 
         if body_brand_val:
-            # Body brand found — use it (it IS the product's actual brand)
             return body_brand_val, body_start, body_end
 
         # No brand in body text; fall back to bracket hint
@@ -294,7 +299,7 @@ class ProductNameParser:
         result = text
         for alias in aliases:
             key_escaped = re.escape(alias)
-            regex = r'(?<![가-힣a-zA-Z0-9])' + key_escaped + r'(?![가-힣a-zA-Z0-9])'
+            regex = _boundary_pattern(key_escaped, alias)
             result = re.sub(regex, ' ', result, flags=re.IGNORECASE)
 
         result = re.sub(r'\s+', ' ', result).strip()
@@ -312,7 +317,7 @@ class ProductNameParser:
             patterns = self.tables['tags'].get(tag_name, [])
             for pattern in patterns:
                 key_escaped = re.escape(pattern)
-                regex = r'(?<![가-힣a-zA-Z0-9])' + key_escaped + r'(?![가-힣a-zA-Z0-9])'
+                regex = _boundary_pattern(key_escaped, pattern)
                 result = re.sub(regex, ' ', result, flags=re.IGNORECASE)
 
         result = re.sub(r'\s+', ' ', result).strip()
@@ -340,7 +345,7 @@ class ProductNameParser:
                 continue
             key_escaped = re.escape(noise)
             text = re.sub(
-                r'(?<![가-힣a-zA-Z0-9])' + key_escaped + r'(?![가-힣a-zA-Z0-9])',
+                _boundary_pattern(key_escaped, noise),
                 ' ',
                 text,
                 flags=re.IGNORECASE,
@@ -356,17 +361,27 @@ class ProductNameParser:
         return text
 
     def _compute_status(
-        self, brand: Optional[str], main_model: Optional[str], category: Optional[str]
+        self, brand: Optional[str], main_model: Optional[str], category: Optional[str],
+        sub_model: Optional[str], residual: str
     ):
         """
         Compute confidence and status label.
-        confidence: 'confirmed' | 'partial' | 'unclassified'
-        status: '완료' | '부분' | '미분류'
+        완료: 브랜드 + 메인모델 + 카테고리 모두 매칭, 잔여텍스트 없음
+        서브모델미분류: 브랜드 + 메인모델 + 카테고리 매칭, 서브모델 없음, 잔여텍스트 있음
+        부분: 브랜드 또는 카테고리 중 일부만 매칭
+        미분류: 브랜드·카테고리 모두 미매칭
+        confidence: 'confirmed' | 'sub_unclassified' | 'partial' | 'unclassified'
+        status: '완료' | '서브모델미분류' | '부분' | '미분류'
         """
         has_brand = brand is not None
+        has_model = main_model is not None
         has_category = category is not None
+        has_sub = sub_model is not None
+        has_residual = bool(residual and residual.strip())
 
-        if has_brand and has_category:
+        if has_brand and has_model and has_category:
+            if not has_sub and has_residual:
+                return 'sub_unclassified', '서브모델미분류'
             return 'confirmed', '완료'
         elif has_brand or has_category:
             return 'partial', '부분'

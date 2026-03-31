@@ -1,261 +1,1018 @@
 {
   "brands": [
     {
-      "name": "핑",
-      "aliases": ["ping"],
-      "models": []
-    },
-    {
       "name": "캘러웨이",
-      "aliases": ["callaway", "한국캘러웨이", "캘러웨이골프"],
+      "aliases": [
+        "callaway",
+        "한국캘러웨이",
+        "캘러웨이골프"
+      ],
       "models": [
         {
           "name": "QI4D",
-          "aliases": ["qi4d"],
+          "aliases": [
+            "qi4d"
+          ],
           "sub_models": [
-            { "name": "MAX", "aliases": ["맥스", "max"] },
-            { "name": "LS", "aliases": ["ls"] }
+            {
+              "name": "MAX",
+              "aliases": [
+                "맥스",
+                "max"
+              ]
+            },
+            {
+              "name": "LS",
+              "aliases": [
+                "ls"
+              ]
+            }
           ]
         },
         {
           "name": "로그",
-          "aliases": ["rogue", "로그"],
+          "aliases": [
+            "rogue",
+            "로그"
+          ],
           "sub_models": [
-            { "name": "ST", "aliases": ["st"] },
-            { "name": "MAX", "aliases": ["맥스", "max"] }
+            {
+              "name": "ST",
+              "aliases": [
+                "st"
+              ]
+            },
+            {
+              "name": "MAX",
+              "aliases": [
+                "맥스",
+                "max"
+              ]
+            }
           ]
         },
         {
           "name": "에픽",
-          "aliases": ["epic", "에픽"],
+          "aliases": [
+            "epic",
+            "에픽"
+          ],
           "sub_models": []
         },
         {
           "name": "파라다임",
-          "aliases": ["paradym", "파라다임"],
+          "aliases": [
+            "paradym",
+            "파라다임"
+          ],
           "sub_models": [
-            { "name": "MEGA", "aliases": ["mega", "메가"] }
+            {
+              "name": "MEGA",
+              "aliases": [
+                "mega",
+                "메가"
+              ]
+            }
           ]
         },
         {
           "name": "어반",
-          "aliases": ["urban", "어반"],
+          "aliases": [
+            "urban",
+            "어반"
+          ],
           "sub_models": []
         },
         {
           "name": "TT 맥스",
-          "aliases": ["tt max", "tt맥스", "tt 맥스"],
+          "aliases": [
+            "tt max",
+            "tt맥스",
+            "tt 맥스"
+          ],
           "sub_models": []
-        }
-      ]
-    },
-    {
-      "name": "오딧세이",
-      "aliases": ["odyssey", "오딧세이"],
-      "models": [
+        },
         {
-          "name": "AI-ONE",
-          "aliases": ["ai-one", "ai one", "아이원"],
+          "name": "스티치  마그넷",
+          "aliases": [
+            "스티치마그넷",
+            "stitch magnet",
+            "stitchmagnet"
+          ],
+          "sub_models": []
+        },
+        {
+          "name": "APEX",
+          "aliases": [
+            "apex"
+          ],
           "sub_models": [
-            { "name": "LE", "aliases": ["le"] }
+            {
+              "name": "UT",
+              "aliases": [
+                "ut"
+              ]
+            }
           ]
         },
         {
-          "name": "화이트핫",
-          "aliases": ["white hot", "whitehot", "화이트핫"],
+          "name": "우먼스 지젤",
+          "aliases": [
+            "wms giselle"
+          ],
           "sub_models": []
         }
       ]
     },
     {
       "name": "타이틀리스트",
-      "aliases": ["titleist"],
+      "aliases": [
+        "titleist"
+      ],
       "models": [
         {
           "name": "TSR",
-          "aliases": ["tsr"],
+          "aliases": [
+            "tsr"
+          ],
           "sub_models": [
-            { "name": "2", "aliases": ["2"] },
-            { "name": "3", "aliases": ["3"] },
-            { "name": "4", "aliases": ["4"] }
+            {
+              "name": "2",
+              "aliases": [
+                "2"
+              ]
+            },
+            {
+              "name": "3",
+              "aliases": [
+                "3"
+              ]
+            },
+            {
+              "name": "4",
+              "aliases": [
+                "4"
+              ]
+            }
           ]
         },
         {
           "name": "T시리즈",
-          "aliases": ["t100", "t150", "t200", "t300", "t350"],
+          "aliases": [
+            "t100",
+            "t150",
+            "t200",
+            "t300",
+            "t350"
+          ],
           "sub_models": []
         },
         {
           "name": "ProV1",
-          "aliases": ["pro v1", "prov1"],
+          "aliases": [
+            "pro v1",
+            "prov1"
+          ],
           "sub_models": [
-            { "name": "x", "aliases": ["x"] }
+            {
+              "name": "x",
+              "aliases": [
+                "x"
+              ]
+            }
           ]
         }
       ]
     },
     {
       "name": "테일러메이드",
-      "aliases": ["taylormade", "taylor made", "테일러 메이드", "테일러메이드"],
+      "aliases": [
+        "taylormade",
+        "taylor made",
+        "테일러 메이드",
+        "테일러메이드"
+      ],
       "models": [
         {
-          "name": "Qi10",
-          "aliases": ["qi10"],
+          "name": "QI10",
+          "aliases": [
+            "qi10"
+          ],
           "sub_models": [
-            { "name": "MAX", "aliases": ["max", "맥스"] },
-            { "name": "LS", "aliases": ["ls"] }
+            {
+              "name": "MAX",
+              "aliases": [
+                "max",
+                "맥스"
+              ]
+            },
+            {
+              "name": "LS",
+              "aliases": [
+                "ls"
+              ]
+            }
           ]
         },
         {
           "name": "스텔스",
-          "aliases": ["stealth", "스텔스"],
+          "aliases": [
+            "stealth",
+            "스텔스"
+          ],
           "sub_models": [
-            { "name": "2", "aliases": ["2"] },
-            { "name": "PLUS", "aliases": ["plus", "플러스"] }
+            {
+              "name": "2",
+              "aliases": [
+                "2"
+              ]
+            },
+            {
+              "name": "PLUS",
+              "aliases": [
+                "plus",
+                "플러스"
+              ]
+            }
           ]
         },
         {
           "name": "SIM",
-          "aliases": ["sim"],
+          "aliases": [
+            "sim"
+          ],
           "sub_models": [
-            { "name": "2", "aliases": ["2"] },
-            { "name": "MAX", "aliases": ["max", "맥스"] }
+            {
+              "name": "2",
+              "aliases": [
+                "2"
+              ]
+            },
+            {
+              "name": "MAX",
+              "aliases": [
+                "max",
+                "맥스"
+              ]
+            }
           ]
+        },
+        {
+          "name": "QI35",
+          "aliases": [
+            "qi35"
+          ],
+          "sub_models": [
+            {
+              "name": "MAX",
+              "aliases": [
+                "max",
+                "맥스"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "스파이더",
+          "aliases": [
+            "spider"
+          ],
+          "sub_models": [
+            {
+              "name": "레드",
+              "aliases": [
+                "red"
+              ]
+            },
+            {
+              "name": "투어 X",
+              "aliases": [
+                "tour X",
+                "투어X",
+                "tourx"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "P790",
+          "aliases": [
+            "p790"
+          ],
+          "sub_models": []
+        },
+        {
+          "name": "하이토우4",
+          "aliases": ["hi-toe4","hitoe4"],
+          "sub_models": []
+        },
+        {
+          "name": "밀드그라인드4",
+          "aliases": [
+            "mg4"
+          ],
+          "sub_models": []
+        },
+        {
+          "name": "밀드그라인드5",
+          "aliases": [
+            "mg5"
+          ],
+          "sub_models": []
+        },
+        {
+          "name": "우먼스 블리스 2.0",
+          "aliases": [
+            "우먼스 블리스2.0",
+            "우먼스블리스2.0",
+            "우먼스블리스 2.0",
+            "wms bliss 2.0",
+            "wms bliss2.0"
+          ],
+          "sub_models": []
+        },
+        {
+          "name": "로즈빌",
+          "aliases": [
+            "roseville"
+          ],
+          "sub_models": []
         }
       ]
     },
     {
       "name": "스릭슨",
-      "aliases": ["srixon", "던롭", "dunlop", "던롭코리아"],
+      "aliases": [
+        "srixon"
+      ],
       "models": [
         {
-          "name": "ZX",
-          "aliases": ["zx"],
+          "name": "ZXI",
+          "aliases": [
+            "zxi"
+          ],
           "sub_models": [
-            { "name": "5", "aliases": ["5"] },
-            { "name": "7", "aliases": ["7"] }
+            {
+              "name": "MAX",
+              "aliases": [
+                "max",
+                "맥스"
+              ]
+            },
+            {
+              "name": "LS",
+              "aliases": [
+                "ls"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "ZX",
+          "aliases": [
+            "zx"
+          ],
+          "sub_models": [
+            {
+              "name": "5",
+              "aliases": [
+                "5"
+              ]
+            },
+            {
+              "name": "7",
+              "aliases": [
+                "7"
+              ]
+            }
           ]
         },
         {
           "name": "Q-STAR",
-          "aliases": ["q-star", "qstar", "q star"],
+          "aliases": [
+            "q-star",
+            "qstar",
+            "q star"
+          ],
           "sub_models": [
-            { "name": "투어", "aliases": ["tour", "투어"] },
-            { "name": "투어 5", "aliases": ["tour 5", "투어 5"] }
+            {
+              "name": "투어",
+              "aliases": [
+                "tour",
+                "투어"
+              ]
+            },
+            {
+              "name": "투어 5",
+              "aliases": [
+                "tour 5",
+                "tour5",
+                "투어5"
+              ]
+            }
           ]
         }
       ]
     },
     {
       "name": "볼빅",
-      "aliases": ["volvik", "볼빅"],
+      "aliases": [
+        "volvik",
+        "볼빅"
+      ],
       "models": []
     },
     {
       "name": "미즈노",
-      "aliases": ["mizuno"],
+      "aliases": [
+        "mizuno"
+      ],
       "models": [
         {
           "name": "JPX",
-          "aliases": ["jpx"],
+          "aliases": [
+            "jpx"
+          ],
           "sub_models": []
+        },
+        {
+          "name": "밸루어",
+          "aliases": [
+            "밸류어",
+            "valour",
+            "밸러"
+          ],
+          "sub_models": [
+            {
+              "name": "006 BOA",
+              "aliases": [
+                "6 boa"
+              ]
+            }
+          ]
         }
       ]
     },
     {
       "name": "브리지스톤",
-      "aliases": ["bridgestone", "브리지 스톤", "브리지스톤"],
+      "aliases": [
+        "bridgestone",
+        "브리지 스톤",
+        "브리지스톤",
+        "브릿지 스톤",
+        "브릿지스톤"
+      ],
       "models": []
     },
     {
       "name": "코브라",
-      "aliases": ["cobra"],
+      "aliases": [
+        "cobra"
+      ],
       "models": [
         {
           "name": "DARKSPEED",
-          "aliases": ["darkspeed", "다크스피드"],
+          "aliases": [
+            "darkspeed",
+            "다크스피드"
+          ],
           "sub_models": []
         }
       ]
     },
     {
       "name": "클리블랜드",
-      "aliases": ["cleveland"],
-      "models": []
+      "aliases": [
+        "cleveland"
+      ],
+      "models": [
+        {
+          "name": "HB SOFT 2",
+          "aliases": [
+            "hb soft 2",
+            "hb soft2",
+            "hbsoft2"
+          ],
+          "sub_models": []
+        },
+        {
+          "name": "RTZ",
+          "aliases": [
+            "rtz"
+          ],
+          "sub_models": [
+            {
+              "name": "투어사틴",
+              "aliases": [
+                "투어 사틴",
+                "tour satin",
+                "toursatin"
+              ]
+            },
+            {
+              "name": "블랙사틴",
+              "aliases": [
+                "블랙 사틴",
+                "black satin",
+                "blacksatin"
+              ]
+            }
+          ]
+        }
+      ]
     },
     {
       "name": "젝시오",
-      "aliases": ["xxio", "젝시오"],
+      "aliases": [
+        "xxio",
+        "젝시오"
+      ],
       "models": []
     },
     {
       "name": "혼마",
-      "aliases": ["honma"],
-      "models": []
+      "aliases": [
+        "honma"
+      ],
+      "models": [
+        {
+          "name": "GC1004",
+          "aliases": [
+            "gc1004"
+          ],
+          "sub_models": []
+        }
+      ]
     },
     {
       "name": "야마하",
-      "aliases": ["yamaha"],
+      "aliases": [
+        "yamaha"
+      ],
       "models": []
     },
     {
       "name": "세인트나인",
-      "aliases": ["saint nine", "saintnine", "세인트 나인"],
+      "aliases": [
+        "saint nine",
+        "saintnine",
+        "세인트 나인"
+      ],
       "models": [
         {
           "name": "퀀텀",
-          "aliases": ["quantum", "퀀텀"],
+          "aliases": [
+            "quantum",
+            "퀀텀"
+          ],
           "sub_models": []
         }
       ]
     },
     {
       "name": "필레오",
-      "aliases": ["filleo", "pilleo", "필레오"],
+      "aliases": [
+        "phileo",
+        "필레오"
+      ],
       "models": []
     },
     {
       "name": "케이디엑스골프",
-      "aliases": ["kdx", "kdx golf", "케이디엑스"],
+      "aliases": [
+        "kdx",
+        "kdx golf",
+        "케이디엑스"
+      ],
       "models": [
         {
           "name": "도깨비",
-          "aliases": ["도깨비"],
+          "aliases": [
+            "도깨비"
+          ],
           "sub_models": [
-            { "name": "TI-21", "aliases": ["ti-21", "ti21"] }
+            {
+              "name": "TI-21",
+              "aliases": [
+                "ti-21",
+                "ti21"
+              ]
+            }
           ]
         }
       ]
+    },
+    {
+      "name": "클리브랜드",
+      "aliases": [
+        "cleveland"
+      ],
+      "models": []
+    },
+    {
+      "name": "캐비어",
+      "aliases": [
+        "caviar"
+      ],
+      "models": [
+        {
+          "name": "아보카도",
+          "aliases": [
+            "avocado"
+          ],
+          "sub_models": [
+            {
+              "name": "S5",
+              "aliases": [
+                "s5"
+              ]
+            },
+            {
+              "name": "S3",
+              "aliases": [
+                "s3"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "핑",
+      "aliases": [
+        "ping"
+      ],
+      "models": []
+    },
+    {
+      "name": "오딧세이",
+      "aliases": [
+        "odyssey",
+        "오딧세이"
+      ],
+      "models": [
+        {
+          "name": "스퀘어 투 스퀘어",
+          "aliases": [
+            "s2s",
+            "square 2 square",
+            "스퀘어투스퀘어"
+          ],
+          "sub_models": [
+            {
+              "name": "MAX",
+              "aliases": [
+                "max",
+                "맥스"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "화이트핫",
+          "aliases": [
+            "white hot",
+            "whitehot",
+            "화이트핫"
+          ],
+          "sub_models": []
+        }
+      ]
+    },
+    {
+      "name": "PRGR",
+      "aliases": [
+        "prgr",
+        "피알지알"
+      ],
+      "models": []
+    },
+    {
+      "name": "폴리브",
+      "aliases": [
+        "폴리브"
+      ],
+      "models": []
+    },
+    {
+      "name": "세븐힐스",
+      "aliases": [
+        "세븐힐스"
+      ],
+      "models": []
+    },
+    {
+      "name": "히로마쓰모토",
+      "aliases": [
+        "히로마쓰모토"
+      ],
+      "models": []
+    },
+    {
+      "name": "커클랜드",
+      "aliases": [
+        "커클랜드"
+      ],
+      "models": []
+    },
+    {
+      "name": "보이스캐디",
+      "aliases": [
+        "보이스캐디"
+      ],
+      "models": []
+    },
+    {
+      "name": "온오프",
+      "aliases": [
+        "온오프"
+      ],
+      "models": []
+    },
+    {
+      "name": "조지스피리츠",
+      "aliases": [
+        "조지스피리츠"
+      ],
+      "models": []
+    },
+    {
+      "name": "지브이투어",
+      "aliases": [
+        "지브이"
+      ],
+      "models": [
+        {
+          "name": "WRAP",
+          "aliases": [
+            "wrap"
+          ],
+          "sub_models": []
+        },
+        {
+          "name": "레이디스 하이테일",
+          "aliases": [
+            "레이디스 하이 테일",
+            "레이디스하이테일"
+          ],
+          "sub_models": []
+        }
+      ]
+    },
+    {
+      "name": "골프프라이드",
+      "aliases": [
+        "골프프라이드"
+      ],
+      "models": []
+    },
+    {
+      "name": "오보로",
+      "aliases": [
+        "오보로"
+      ],
+      "models": []
+    },
+    {
+      "name": "요넥스",
+      "aliases": [
+        "요넥스"
+      ],
+      "models": []
+    },
+    {
+      "name": "버크",
+      "aliases": [
+        "버크"
+      ],
+      "models": []
     }
   ],
   "categories": [
-    { "name": "커버", "priority": 20, "aliases": ["커버", "cover", "헤드커버", "헤드 커버"] },
-    { "name": "파우치", "priority": 15, "aliases": ["파우치", "pouch"] },
-    { "name": "드라이버", "priority": 5, "aliases": ["driver", "드라이버"] },
-    { "name": "아이언", "priority": 5, "aliases": ["iron", "아이언", "아이언세트"] },
-    { "name": "퍼터", "priority": 5, "aliases": ["putter", "퍼터"] },
-    { "name": "우드", "priority": 5, "aliases": ["wood", "우드", "페어웨이우드"] },
-    { "name": "유틸리티", "priority": 5, "aliases": ["utility", "유틸리티", "하이브리드", "hybrid", "유틸"] },
-    { "name": "웨지", "priority": 5, "aliases": ["wedge", "웨지"] },
-    { "name": "골프공", "priority": 5, "aliases": ["볼", "ball", "골프볼", "골프공"] },
-    { "name": "가방", "priority": 10, "aliases": ["백", "bag", "보스턴백", "캐디백", "카트백", "더블백"] },
-    { "name": "모자", "priority": 8, "aliases": ["캡", "cap", "버킷햇", "햇", "hat", "볼캡", "비니", "모자"] },
-    { "name": "장갑", "priority": 8, "aliases": ["glove", "장갑"] },
-    { "name": "신발", "priority": 8, "aliases": ["shoes", "슈즈", "신발"] },
-    { "name": "의류", "priority": 5, "aliases": ["티셔츠", "바지", "자켓", "반팔", "긴팔", "셔츠", "조끼", "니트", "의류"] },
-    { "name": "거리측정기", "priority": 8, "aliases": ["레이저", "rangefinder", "거리측정기"] },
-    { "name": "카트", "priority": 8, "aliases": ["cart", "카트", "트롤리", "trolley"] },
-    { "name": "악세사리", "priority": 3, "aliases": ["accessory", "악세사리", "마커", "티", "그립"] },
-    { "name": "파크골프", "priority": 8, "aliases": ["파크골프", "park golf"] }
+    {
+      "name": "파크골프",
+      "aliases": []
+    },
+    {
+      "name": "커버",
+      "aliases": [
+        "커버",
+        "cover",
+        "헤드커버",
+        "헤드 커버",
+        "드라이버커버",
+        "아이언커버",
+        "우드커버",
+        "유틸리티커버",
+        "퍼터커버"
+      ]
+    },
+    {
+      "name": "그립",
+      "aliases": []
+    },
+    {
+      "name": "골프백세트",
+      "aliases": []
+    },
+    {
+      "name": "캐디백",
+      "aliases": []
+    },
+    {
+      "name": "보스턴백",
+      "aliases": []
+    },
+    {
+      "name": "카트백",
+      "aliases": []
+    },
+    {
+      "name": "기타가방",
+      "aliases": [
+        "더블백",
+        "토트백",
+        "파우치"
+      ]
+    },
+    {
+      "name": "모자",
+      "aliases": [
+        "골프모자",
+        "버킷햇",
+        "바이저",
+        "볼캡"
+      ]
+    },
+    {
+      "name": "장갑",
+      "aliases": [
+        "glove",
+        "장갑",
+        "골프장갑"
+      ]
+    },
+    {
+      "name": "신발",
+      "aliases": [
+        "shoes",
+        "슈즈",
+        "신발",
+        "골프화"
+      ]
+    },
+    {
+      "name": "거리측정기",
+      "aliases": [
+        "rangefinder",
+        "거리측정기"
+      ]
+    },
+    {
+      "name": "드라이버",
+      "aliases": [
+        "driver",
+        "드라이버"
+      ]
+    },
+    {
+      "name": "아이언세트",
+      "aliases": [
+        "7아이언세트",
+        "7아이언"
+      ]
+    },
+    {
+      "name": "아이언",
+      "aliases": [
+        "iron",
+        "아이언",
+        "아이언단품"
+      ]
+    },
+    {
+      "name": "퍼터",
+      "aliases": [
+        "putter",
+        "퍼터"
+      ]
+    },
+    {
+      "name": "우드",
+      "aliases": [
+        "wood",
+        "우드",
+        "페어웨이우드"
+      ]
+    },
+    {
+      "name": "유틸리티",
+      "aliases": [
+        "utility",
+        "유틸리티",
+        "하이브리드",
+        "hybrid",
+        "유틸"
+      ]
+    },
+    {
+      "name": "웨지",
+      "aliases": [
+        "wedge",
+        "웨지"
+      ]
+    },
+    {
+      "name": "골프공",
+      "aliases": [
+        "볼",
+        "ball",
+        "골프볼",
+        "골프공",
+        "로고볼",
+        "반발볼"
+      ]
+    },
+    {
+      "name": "악세사리",
+      "aliases": [
+        "accessory",
+        "악세사리",
+        "마커",
+        "티",
+        "그립"
+      ]
+    },
+    {
+      "name": "상자",
+      "aliases": [
+        "택배상자"
+      ]
+    }
   ],
   "tags": {
-    "남성": ["남성", "남성용", "남자", "men", "man", "male", "mens"],
-    "여성": ["여성", "여성용", "여자", "women", "woman", "female", "ladies", "lady", "womens"],
-    "시타채": ["시타채", "시타"],
-    "좌타": ["좌타", "좌타자", "lh", "left hand", "lefty"],
-    "리퍼브": ["리퍼브", "리퍼브드", "refurb", "refurbished"],
-    "전시상품": ["전시상품", "전시품", "전시"],
-    "임직원": ["임직원", "임직원몰전용", "임직원전용", "임직원몰"]
+    "증정A": [
+      "증정A"
+    ],
+    "증정": [
+      "증정"
+    ],
+    "남성": [
+      "남성",
+      "남성용",
+      "남자",
+      "men",
+      "man",
+      "male",
+      "mens"
+    ],
+    "여성": [
+      "여성",
+      "여성용",
+      "여자",
+      "women",
+      "woman",
+      "female",
+      "ladies",
+      "lady",
+      "womens"
+    ],
+    "시타채": [
+      "시타채",
+      "시타"
+    ],
+    "좌타": [
+      "좌타",
+      "좌타자",
+      "lh",
+      "left hand",
+      "lefty"
+    ],
+    "왼손": [
+      "왼손"
+    ],
+    "리퍼브": [
+      "리퍼브",
+      "리퍼브드",
+      "refurb",
+      "refurbished"
+    ],
+    "전시상품": [
+      "전시상품",
+      "전시품",
+      "전시"
+    ],
+    "임직원": [
+      "임직원",
+      "임직원몰전용",
+      "임직원전용",
+      "임직원몰"
+    ]
   },
-  "noise_patterns": ["증정", "정품", "GF", "_GF", "코리아", "골프"]
+  "noise_patterns": [
+    "정품",
+    "GF",
+    "_GF",
+    "코리아"
+  ]
 }
